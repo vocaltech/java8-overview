@@ -1,5 +1,10 @@
 package fr.vocaltech.java8.models;
 
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString
 public class Position {
     private double latitude;
     private double longitude;
@@ -14,5 +19,4 @@ public class Position {
         this.trackId = trackId;
         this.userId = userId;
     }
-
 }

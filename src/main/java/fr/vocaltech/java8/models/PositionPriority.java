@@ -1,5 +1,10 @@
 package fr.vocaltech.java8.models;
 
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString
 public class PositionPriority extends Position {
     private byte priority = 0;
 
