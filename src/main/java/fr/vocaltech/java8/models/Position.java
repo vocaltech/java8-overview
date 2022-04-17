@@ -12,6 +12,8 @@ public class Position {
     private String trackId;
     private String userId;
 
+    public Position() {}
+
     public Position(double latitude, double longitude, long time, String trackId, String userId) {
         this.latitude = latitude;
         this.longitude = longitude;
