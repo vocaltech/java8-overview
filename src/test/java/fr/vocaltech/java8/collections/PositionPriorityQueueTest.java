@@ -17,21 +17,18 @@ class PositionPriorityQueueTest {
         var queue = new PriorityQueue<PositionPriority>();
 
         // enqueue one value with priority 1
-        byte priority1 = 1;
-        var p1 = new PositionPriority(priority1, 42.3, 1.2, Instant.now().toEpochMilli(), "trackId", "userId");
+        var p1 = new PositionPriority((byte) 1, 42.3, 1.2, Instant.now().toEpochMilli(), "trackId", "userId");
         queue.offer(p1);
 
         // enqueue some values with priority 2
-        byte priority2 = 2;
-        var p2 = new PositionPriority(priority2, 45.1, 1.4, Instant.now().toEpochMilli(), "trackId", "userId");
+        var p2 = new PositionPriority((byte) 2, 45.1, 1.4, Instant.now().toEpochMilli(), "trackId", "userId");
         queue.offer(p2);
 
-        var p3 = new PositionPriority(priority2, 44.1, 1.3, Instant.now().toEpochMilli(), "trackId", "userId");
+        var p3 = new PositionPriority((byte) 2, 44.1, 1.3, Instant.now().toEpochMilli(), "trackId", "userId");
         queue.offer(p3);
 
         // enqueue some values with priority 3
-        byte priority3 = 3;
-        var p4 = new PositionPriority(priority3, 40.7, 1.5, Instant.now().toEpochMilli(), "trackId", "userId");
+        var p4 = new PositionPriority((byte) 3, 40.7, 1.5, Instant.now().toEpochMilli(), "trackId", "userId");
         queue.offer(p4);
 
         // assertions
