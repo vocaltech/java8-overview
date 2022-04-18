@@ -29,5 +29,13 @@ class RuleMatrixTest {
         assertThat(result).isEqualTo(17.5);
     }
 
+    @Test
+    void givenCartValueNine_thenReturn_1_5() {
+        cart = new Cart();
+        cart.setValue(9.0);
+
+        var result = RuleMatrix.getRule(cart).apply(cart);
+        assertThat(result).isEqualTo(1.5);
+    }
 
 }
