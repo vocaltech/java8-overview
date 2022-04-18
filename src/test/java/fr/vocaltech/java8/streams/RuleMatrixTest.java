@@ -20,4 +20,14 @@ class RuleMatrixTest {
     }
 
 
+    @Test
+    void givenCartValueSeven_thenReturn_Seven_Multiply_2_5() {
+        cart = new Cart();
+        cart.setValue(7.0);
+
+        var result = RuleMatrix.getRule(cart).apply(cart);
+        assertThat(result).isEqualTo(17.5);
+    }
+
+
 }
