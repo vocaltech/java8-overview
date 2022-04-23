@@ -66,7 +66,7 @@ class OptionalBasicsTest {
         CartItem cartItem = new CartItem("TeckTech 100Gb HD", "peripherals", 55.0);
 
         boolean isPriceInRange = Optional.of(cartItem)
-                .map(o -> o.getPrice())
+                .map(CartItem::getPrice)
                 .filter(p -> p > 40.0)
                 .filter(p -> p < 56.0)
                 .isPresent();
