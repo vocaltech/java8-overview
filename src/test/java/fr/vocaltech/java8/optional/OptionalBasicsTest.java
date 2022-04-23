@@ -41,4 +41,14 @@ class OptionalBasicsTest {
 
         assertThat(name).isEqualTo("vocaltech");
     }
+
+    @Test
+    void whenOptionalFilterWorks_thenCorrect() {
+        String password = "password_is_strong";
+        Optional<String> passwordOptional = Optional.of(password);
+
+        boolean isPasswordStrong = passwordOptional
+                .filter(p -> p.length() > 5)
+                .isPresent();
+    }
 }
