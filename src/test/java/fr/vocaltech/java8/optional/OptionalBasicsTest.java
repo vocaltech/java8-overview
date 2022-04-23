@@ -15,7 +15,6 @@ class OptionalBasicsTest {
     void givenNonNull_whenCreatesNonNullable_thenCorrect() {
         String str = "vocaltech";
         Optional<String> optionalString = Optional.of(str);
-
         assertThat(optionalString.isPresent()).isTrue();
     }
 
@@ -23,6 +22,13 @@ class OptionalBasicsTest {
     void givenNull_whenThrowsErrorOnCreate_thenCorrect() {
         assertThatThrownBy(() -> Optional.of(null))
                 .isInstanceOf(NullPointerException.class);
+    }
+
+    @Test
+    void givenNull_whenOrElseWorks_thenShouldReturnValue() {
+        String str = Optional.ofNullable((String) null)
+                .orElse("vocaltech");
+        System.out.println(str);
     }
 
 }
