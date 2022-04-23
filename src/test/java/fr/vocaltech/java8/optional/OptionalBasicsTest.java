@@ -1,5 +1,6 @@
 package fr.vocaltech.java8.optional;
 
+import fr.vocaltech.java8.models.CartItem;
 import org.junit.jupiter.api.Test;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
@@ -58,5 +59,18 @@ class OptionalBasicsTest {
                 .isPresent();
 
         assertThat(isPasswordStrong).isFalse();
+    }
+
+    @Test
+    void givenCartItemPrice_whenPriceIsInRange_thenShouldReturnTrue() {
+        CartItem cartItem = new CartItem("TeckTech 100Gb HD", "peripherals", 55.0);
+
+        boolean isPriceInRange = Optional.of(cartItem)
+                .map(o -> o.getPrice())
+                .filter(p -> p > 40.0)
+                .filter(p -> p < 56.0)
+                .isPresent();
+
+        assertThat(isPriceInRange).isTrue();
     }
 }
