@@ -26,9 +26,19 @@ class OptionalBasicsTest {
 
     @Test
     void givenNull_whenOrElseWorks_thenShouldReturnValue() {
-        String str = Optional.ofNullable((String) null)
+        String str = null;
+        String name = Optional.ofNullable(str)
                 .orElse("vocaltech");
-        System.out.println(str);
+
+        assertThat(name).isEqualTo("vocaltech");
     }
 
+    @Test
+    void givenNull_whenOrElseGetWorks_thenShouldReturnValue() {
+        String str = null;
+        String name = Optional.ofNullable(str)
+                .orElseGet(() -> "vocaltech");
+
+        assertThat(name).isEqualTo("vocaltech");
+    }
 }
