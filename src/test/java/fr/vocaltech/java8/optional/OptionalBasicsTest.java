@@ -50,5 +50,13 @@ class OptionalBasicsTest {
         boolean isPasswordStrong = passwordOptional
                 .filter(p -> p.length() > 5)
                 .isPresent();
+
+        assertThat(isPasswordStrong).isTrue();
+
+        isPasswordStrong = passwordOptional
+                .filter(p -> p.length() < 5)
+                .isPresent();
+
+        assertThat(isPasswordStrong).isFalse();
     }
 }
