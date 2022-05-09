@@ -24,4 +24,12 @@ class StreamsTest {
     void givenList_whenAddOneElement_thenSizeIsOne() {
         assertThat(list.stream().distinct().count()).isEqualTo(1);
     }
+
+    @Test
+    void givenList_whenIterating_thenReturnTrue() {
+        boolean isExist = list.stream()
+                .anyMatch(l -> l.contains("elt1"));
+
+        assertThat(isExist).isTrue();
+    }
 }
