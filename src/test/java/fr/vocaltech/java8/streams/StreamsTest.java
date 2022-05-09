@@ -2,6 +2,8 @@ package fr.vocaltech.java8.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,5 +33,18 @@ class StreamsTest {
                 .anyMatch(l -> l.contains("elt1"));
 
         assertThat(isExist).isTrue();
+    }
+
+    @Test
+    void givenList_whenFiltering_thenReturnFilteredStream() {
+        list.add("elt2");
+        list.add("no_1");
+        list.add("elt3");
+        list.add("no_2");
+
+        Stream<String> filteredStream = list.stream().filter(e -> e.contains(("elt")));
+
+        List<String> filteredList = filteredStream.collect(Collectors.toList());
+        assertThat(filteredList).containsExactly("elt1", "elt2", "elt3");
     }
 }
