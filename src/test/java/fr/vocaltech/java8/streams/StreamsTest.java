@@ -2,6 +2,7 @@ package fr.vocaltech.java8.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,5 +47,15 @@ class StreamsTest {
 
         List<String> filteredList = filteredStream.collect(Collectors.toList());
         assertThat(filteredList).containsExactly("elt1", "elt2", "elt3");
+    }
+
+    @Test
+    void givenList_whenMapping_thenReturnAlteredListContent() {
+        List<String> alteredList = list
+                .stream()
+                .map(e -> "altered_" + e)
+                .collect(Collectors.toList());
+
+        assertThat(alteredList).containsExactly("altered_elt1");
     }
 }
