@@ -58,4 +58,18 @@ class StreamsTest {
 
         assertThat(alteredList).containsExactly("altered_elt1");
     }
+
+    @Test
+    void givenList_whenReducing_thenReturnSumOfList() {
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+
+        Integer reducedVal = integers
+                .stream()
+                .reduce(0, Integer::sum);
+
+        assertThat(reducedVal).isEqualTo(6);
+    }
 }
