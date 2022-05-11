@@ -2,3 +2,4 @@
 - Collections: PriorityQueue
 - Optional
 - Streams
+- Functions
