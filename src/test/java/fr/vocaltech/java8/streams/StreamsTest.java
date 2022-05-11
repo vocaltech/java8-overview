@@ -72,4 +72,18 @@ class StreamsTest {
 
         assertThat(reducedVal).isEqualTo(6);
     }
+
+    @Test
+    void createStream_withBuilder_thenReturnStream() throws ClassNotFoundException {
+        Stream<String> streamBuilder = Stream.<String>builder()
+                .add("builder1")
+                .add("builder2")
+                .add("builder3")
+                .build();
+
+        assertThat(streamBuilder).isInstanceOf(Class.forName("java.util.stream.Stream"));
+
+        List<String> streamList = streamBuilder.collect(Collectors.toList());
+        assertThat(streamList.get(0)).isEqualTo("builder1");
+    }
 }
