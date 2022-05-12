@@ -2,6 +2,7 @@ package fr.vocaltech.java8.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -84,5 +85,16 @@ class StreamsTest {
 
         List<String> streamList = streamBuilder.collect(Collectors.toList());
         assertThat(streamList.get(0)).isEqualTo("builder1");
+    }
+
+    @Test
+    void createStream_withGenerate_thenReturnList() {
+        Random random = new Random();
+        List<Integer> list = Stream
+                .generate(() -> random.nextInt(11))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        assertThat(list).containsAnyOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     }
 }
