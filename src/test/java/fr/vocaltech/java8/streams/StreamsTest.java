@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -103,6 +104,16 @@ class StreamsTest {
         List<Integer> list = Stream
                 .iterate(0, n -> n + 1)
                 .limit(11)
+                .collect(Collectors.toList());
+
+        assertThat(list).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    }
+
+    @Test
+    void createStream_withIntStream_thenReturnList() {
+        IntStream intStream = IntStream.range(0, 11);
+        List<Integer> list = intStream
+                .boxed()
                 .collect(Collectors.toList());
 
         assertThat(list).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
