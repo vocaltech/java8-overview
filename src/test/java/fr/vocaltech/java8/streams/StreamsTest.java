@@ -97,4 +97,14 @@ class StreamsTest {
 
         assertThat(list).containsAnyOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     }
+
+    @Test
+    void createStream_withIterate_thenReturnList() {
+        List<Integer> list = Stream
+                .iterate(0, n -> n + 1)
+                .limit(11)
+                .collect(Collectors.toList());
+
+        assertThat(list).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    }
 }
