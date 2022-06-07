@@ -1,5 +1,7 @@
 package fr.vocaltech.java8.streams;
 
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -117,5 +119,29 @@ class StreamsTest {
                 .collect(Collectors.toList());
 
         assertThat(list).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    }
+
+    @Test
+    void createStream_withFile_thenReturnLines() throws IOException {
+        String curDir = Paths.get("")
+                .toAbsolutePath()
+                .toString();
+
+        Path path = Paths.get(curDir, "stream.txt");
+
+        // create new file
+        try {
+            Files.createFile(path);
+        } catch(FileAlreadyExistsException exc) {
+            assertThat(exc.toString()).contains("FileAlreadyExistsException");
+        }
+
+        // write some lines
+        List<String> lines = new ArrayList<>();
+        lines.add("line1");
+        lines.add("line2");
+        lines.add("line3");
+
+        Files.write(path, lines, StandardOpenOption.APPEND);
     }
 }
