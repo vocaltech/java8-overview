@@ -143,5 +143,10 @@ class StreamsTest {
         lines.add("line3");
 
         Files.write(path, lines, StandardOpenOption.APPEND);
+
+        // read file as stream
+        try (Stream<String> streamLines = Files.lines(path)) {
+            streamLines.forEach(System.out::println);
+        }
     }
 }
