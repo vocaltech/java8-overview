@@ -149,4 +149,12 @@ class StreamsTest {
             streamLines.forEach(System.out::println);
         }
     }
+
+    @Test
+    void createStreamPipeline() {
+        Stream<String> items = Stream.of("item1", "item2", "item3");
+
+        Stream<String> skipItems = items.skip(1);
+        assertThat(skipItems.collect(Collectors.toList())).containsExactly("item2", "item3");
+    }
 }
