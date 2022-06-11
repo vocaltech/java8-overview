@@ -156,5 +156,10 @@ class StreamsTest {
 
         Stream<String> skipItems = items.skip(1);
         assertThat(skipItems.collect(Collectors.toList())).containsExactly("item2", "item3");
+
+        // stream pipeline
+        Stream<String> items2 = Stream.of("i2", "i1", "i3");
+        Stream<String> sortedItems2 = items2.sorted();
+        assertThat(sortedItems2.collect(Collectors.toList())).containsExactly("i1", "i2", "i3");
     }
 }
