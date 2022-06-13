@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -161,5 +162,18 @@ class StreamsTest {
         Stream<String> items2 = Stream.of("i2", "i1", "i3");
         Stream<String> sortedItems2 = items2.sorted();
         assertThat(sortedItems2.collect(Collectors.toList())).containsExactly("i1", "i2", "i3");
+    }
+
+    @Test
+    void createStream_thenReturnMax() {
+        List<Integer> ints = new ArrayList<>();
+        ints.add(5);
+        ints.add(3);
+        ints.add(2);
+        ints.add(7);
+
+        Optional<Integer> optionalMax = ints.stream().max(Integer::compare);
+        Integer maxVal = optionalMax.get();
+        assertThat(maxVal).isEqualTo(7);
     }
 }
