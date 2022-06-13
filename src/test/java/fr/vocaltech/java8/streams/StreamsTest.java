@@ -2,10 +2,7 @@ package fr.vocaltech.java8.streams;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -175,5 +172,13 @@ class StreamsTest {
         Optional<Integer> optionalMax = ints.stream().max(Integer::compare);
         Integer maxVal = optionalMax.get();
         assertThat(maxVal).isEqualTo(7);
+    }
+
+    @Test
+    void createStream_thenReturnMin() {
+        List<Integer> ints = Arrays.asList(5, 3, 2, 7);
+        Optional<Integer> minOptional = ints.stream().min(Integer::compare);
+
+        assertThat(minOptional.get()).isEqualTo(2);
     }
 }
