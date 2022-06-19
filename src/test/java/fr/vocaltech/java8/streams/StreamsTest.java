@@ -181,4 +181,11 @@ class StreamsTest {
 
         assertThat(minOptional.get()).isEqualTo(2);
     }
+
+    @Test
+    void createStream_thenReduce() {
+        OptionalInt res = IntStream.range(1, 3).reduce((a, b) -> a + b);
+
+        assertThat(res.getAsInt()).isEqualTo(3);
+    }
 }
