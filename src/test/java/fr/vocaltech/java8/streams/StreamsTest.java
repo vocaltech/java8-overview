@@ -184,8 +184,10 @@ class StreamsTest {
 
     @Test
     void createStream_thenReduce() {
-        OptionalInt res = IntStream.range(1, 3).reduce((a, b) -> a + b);
+        OptionalInt optionalRes = IntStream.range(1, 3).reduce((a, b) -> a + b);
+        assertThat(optionalRes.getAsInt()).isEqualTo(3);
 
-        assertThat(res.getAsInt()).isEqualTo(3);
+        int res = IntStream.range(1, 3).reduce(5, Integer::sum);
+        assertThat(res).isEqualTo(8);
     }
 }
