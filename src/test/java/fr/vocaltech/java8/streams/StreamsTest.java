@@ -189,5 +189,13 @@ class StreamsTest {
 
         int res = IntStream.range(1, 3).reduce(5, Integer::sum);
         assertThat(res).isEqualTo(8);
+
+        int reducedParams = Stream.of(1, 2, 3)
+                .reduce(10, (a, b) -> a + b, (a, b) -> {
+            System.out.println("combiner was called...");
+            return a + b;
+        });
+
+        assertThat(reducedParams).isEqualTo(16);
     }
 }
