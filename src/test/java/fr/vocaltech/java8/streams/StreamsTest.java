@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import fr.vocaltech.java8.models.CartItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -197,5 +198,27 @@ class StreamsTest {
         });
 
         assertThat(reducedParams).isEqualTo(16);
+    }
+
+    @Test
+    void createStream_thenCollect() {
+        List<CartItem> items = new ArrayList<>();
+        items.add(new CartItem("item1", "cat1", 100.25));
+        items.add(new CartItem("item2", "cat2", 140.15));
+        items.add(new CartItem("item3", "cat2", 317.25));
+
+        // get items descriptions as list
+        List<String> descriptionsAsList = items.stream()
+                .map(CartItem::getDescription)
+                .collect(Collectors.toList());
+
+        assertThat(descriptionsAsList).containsExactly("item1", "item2", "item3");
+
+        // get items descriptions as string
+        String descriptionsAsString = items.stream()
+                .map(CartItem::getDescription)
+                .collect(Collectors.joining(", ", "[", "]"));
+
+        assertThat(descriptionsAsString).isEqualTo("[item1, item2, item3]");
     }
 }
