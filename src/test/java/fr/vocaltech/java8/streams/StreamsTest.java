@@ -239,5 +239,15 @@ class StreamsTest {
                 .collect(Collectors.summarizingDouble(CartItem::getPrice));
 
         assertThat(doubleSummaryStats.getCount()).isEqualTo(3);
+
+        // grouping of stream's elements
+         Map<Double, List<CartItem>> itemsByPrice = items.stream()
+                .collect(Collectors.groupingBy(CartItem::getPrice));
+
+        CartItem item = (CartItem) itemsByPrice.get(317.25).get(0);
+        assertThat(item.getDescription()).isEqualTo("item3");
+
+        item = (CartItem) itemsByPrice.get(100.25).get(0);
+        assertThat(item.getDescription()).isEqualTo("item1");
     }
 }
