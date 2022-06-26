@@ -233,5 +233,11 @@ class StreamsTest {
                 .collect(Collectors.summingDouble(CartItem::getPrice));
 
         assertThat(sumPrice).isEqualTo(557.65);
+
+        // collect statistical information about stream's elements
+        DoubleSummaryStatistics doubleSummaryStats = items.stream()
+                .collect(Collectors.summarizingDouble(CartItem::getPrice));
+
+        assertThat(doubleSummaryStats.getCount()).isEqualTo(3);
     }
 }
