@@ -227,5 +227,11 @@ class StreamsTest {
                 .collect(Collectors.averagingDouble(CartItem::getPrice));
 
         assertThat(averagePrice).isCloseTo(185.0, Offset.offset(0.9));
+
+        // process the sum of the stream
+        double sumPrice = items.stream()
+                .collect(Collectors.summingDouble(CartItem::getPrice));
+
+        assertThat(sumPrice).isEqualTo(557.65);
     }
 }
