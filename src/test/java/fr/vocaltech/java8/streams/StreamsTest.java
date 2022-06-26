@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import fr.vocaltech.java8.models.CartItem;
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -220,5 +221,11 @@ class StreamsTest {
                 .collect(Collectors.joining(", ", "[", "]"));
 
         assertThat(descriptionsAsString).isEqualTo("[item1, item2, item3]");
+
+        // get average price
+        double averagePrice = items.stream()
+                .collect(Collectors.averagingDouble(CartItem::getPrice));
+
+        assertThat(averagePrice).isCloseTo(185.0, Offset.offset(0.9));
     }
 }
