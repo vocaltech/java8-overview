@@ -249,5 +249,15 @@ class StreamsTest {
 
         item = (CartItem) itemsByPrice.get(100.25).get(0);
         assertThat(item.getDescription()).isEqualTo("item1");
+
+        // dividing stream's elements
+        Map<Boolean, List<CartItem>> itemsPartitionedByPrice = items.stream()
+                .collect(Collectors.partitioningBy(elt -> elt.getPrice() > 140.0));
+
+        CartItem itemTrue = (CartItem) itemsPartitionedByPrice.get(true).get(0);
+        assertThat(itemTrue.getDescription()).isEqualTo("item2");
+
+        itemTrue = (CartItem) itemsPartitionedByPrice.get(true).get(1);
+        assertThat(itemTrue.getDescription()).isEqualTo("item3");
     }
 }
